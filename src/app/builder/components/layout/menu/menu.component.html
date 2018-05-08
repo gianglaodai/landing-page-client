@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand align-items-center" routerLink="/default" [queryParams]="{'userName':userName,'product':product}">
+    <img src="assets/img/small-logo.png" alt="" height="30">
+  </a>
+  <button mat-raised-button class="align-items-center page-name" (click)="openRenameDialog()">{{pageName}}</button>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto align-items-center" *ngIf="!isMobile">
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" (click)="isMobile=false" mat-raised-button color="primary">
+          <i class="material-icons">desktop_windows</i> Desktop
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" (click)="isMobile=true" mat-button>
+          <i class="material-icons">smartphone</i> Smartphone
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto align-items-center" *ngIf="isMobile">
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" (click)="isMobile=false" mat-button>
+          <i class="material-icons">desktop_windows</i> Desktop
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" (click)="isMobile=true" mat-raised-button color="primary">
+          <i class="material-icons">smartphone</i> Smartphone
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" mat-raised-button href="javascript:void(0)" (click)="orderInterface()">Sắp xếp lại giao diện
+          <i class="material-icons">smartphone</i>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav align-items-center">
+      <li class="nav-item">
+        <button class="nav-link" mat-icon-button [disabled]="!isShowUndo" (click)="undo()" matTooltip="Undo" matTooltipPosition="below">
+          <i class="material-icons">undo</i>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" mat-icon-button [disabled]="!isShowRedo" (click)="redo()" matTooltip="Redo" matTooltipPosition="below">
+          <i class="material-icons">redo</i>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" mat-button (click)="savePage()">
+          <i class="material-icons">save</i> Lưu
+        </button>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" mat-raised-button [routerLink]="['/preview',userName,pageName]" target="_blank">
+          <i class="material-icons">open_in_new</i> Xem trước
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" mat-raised-button [href]="serverHost+'/page/preview?user='+userName+'&product='+product+'&pageName='+saveUrl(pageName)+'&publish='+curentPublish" target="_blank">
+          <i class="material-icons">open_in_new</i> Xem trước
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" color="primary" mat-raised-button (click)="publish()" target="_blank">
+          <i class="material-icons">public</i> Xuất bản
+        </a>
+      </li>
+      <li class="nav-item">
+        <a mat-mini-fab color="warn" routerLink="/default" [queryParams]="{'userName':userName,'product':product}" matTooltip="Về trang quản lý landing page"
+          matTooltipPosition="below">
+          <i class="material-icons">power_settings_new</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

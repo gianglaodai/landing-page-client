@@ -1,0 +1,15 @@
+<header>
+  <mat-card>
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="logo">
+          <img src="assets/img/logo.png" alt="Logo">
+        </div>
+        <div class="button-row" *ngIf="isShowExit">
+          <a mat-raised-button color="warn" routerLink="/default"
+          [queryParams]="{'userName':userName,'product':product}" matTooltip="Thoát" matTooltipPosition="below">Thoát</a>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</header>

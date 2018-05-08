@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-select placeholder="Kiểu tiêu đề" #headingSelect [value]="element.component.type" (selectionChange)="changeHeading(headingSelect.value)"
+  [ngStyle]="{'font-weight':element.component.contentStyle['font-weight'],'font-family':element.component.contentStyle['font-family']}">
+    <mat-option *ngFor="let h of componentType.HEADING_COMPONENT" [value]="h">
+      <span class="{{h}}"
+      [ngStyle]="{'font-weight':element.component.contentStyle['font-weight'],'font-family':element.component.contentStyle['font-family']}">Tiêu đề {{h}}</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

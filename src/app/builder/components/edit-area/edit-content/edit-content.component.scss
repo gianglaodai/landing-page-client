@@ -1,0 +1,90 @@
+:host {
+    display: block; // overflow: auto
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.03);
+    height: 100%;
+}
+
+:host ::ng-deep {
+    * {
+        background-size: cover
+    }
+    .mCSB_scrollTools {
+        z-index: 99;
+    }
+    .mCSB_outside+.mCS-minimal-dark.mCSB_scrollTools_vertical {
+        margin: 0
+    }
+}
+
+#edit-content {
+    line-height: 18px;
+    color: #000;
+    position: relative;
+    padding-bottom: 50px;
+    max-height: 100%
+}
+
+.isMobile :host {
+    display: block;
+    margin: 0 auto;
+    width: 352px;
+    height: 100%; // overflow-x: hidden;
+    // overflow-y: auto;
+    box-shadow: none;
+}
+
+.isMobile :host #edit-content {
+    z-index: 1;
+}
+
+.isMobile :host #container {
+    // height: 100%;
+    position: relative;
+    width: 320px;
+    margin: 0 auto;
+}
+
+#diver-line-x {
+    border-top: 1px solid red;
+    width: 100%;
+    left: 0;
+}
+
+#diver-line-y {
+    border-left: 1px solid red;
+    height: 100%;
+    top: 0;
+}
+
+#diver-line-x,
+#diver-line-y {
+    position: fixed;
+    z-index: 999;
+    display: none;
+}
+
+app-section {
+    display: block;
+    border-bottom: #28ABE3 solid 1px !important;
+    position: relative;
+}
+
+.add-new-section {
+    font-weight: bold;
+    color: #999;
+    padding: 5px 15px;
+    border: 3px dashed #999;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -80.5px;
+    margin-top: -18.5px;
+    cursor: pointer;
+    transition: ease-in-out .3s
+}
+
+.add-new-section:hover {
+    color: #1e88e5;
+    border-color: #1e88e5;
+}

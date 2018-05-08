@@ -1,0 +1,69 @@
+<div id="content">
+  <div class="container">
+    <mat-card>
+      <div class="page-action d-flex align-items-center justify-content-between">
+        <h3 class="text-nowrap">Landing Pages của tôi</h3>
+        <div class="search">
+          <input type="text" class="form-control" placeholder="Nhập tên Landing Page" [(ngModel)]="keyword">
+          <i class="material-icons">search</i>
+        </div>
+        <button *ngIf="isAdmin" type="button" class="btn btn-success" (click)="addTemplate()">Thêm template</button>
+        <button type="button" class="btn btn-primary" appOpenModalNewPage>+ Tạo mới Landing Page</button>
+      </div>
+    </mat-card>
+    <br/>
+    <!-- <div class="d-flex justify-content-end" *ngIf="pages && pages.length">
+      <button [matMenuTriggerFor]="filterMenu" class="btn btn-filter d-flex justify-content-between align-items-center" style="width:200px">
+        <span>Tất cả</span>
+        <i class="material-icons">arrow_drop_down</i>
+      </button>
+      <mat-menu #filterMenu="matMenu" xPosition="before" overlapTrigger="false">
+        <button mat-menu-item>Tất cả</button>
+        <button mat-menu-item>Đã xuất bản</button>
+        <button mat-menu-item>Chưa xuất bản</button>
+      </mat-menu>
+    </div>
+    <br/> -->
+    <div class="page-list">
+      <mat-card *ngFor="let page of pages">
+        <div class="d-flex">
+          <i class="ion-ios-paper-outline page-icon"></i>
+          <div class="mr-auto">
+            <h3>
+              <a [routerLink]="['/builder']" [queryParams]="{'userName':userName,'product':product,'fileName':page.fileName,'publish':page.publish}">{{page.fileName}}</a>
+              <!-- Tên page, thêm tham số username và tên page vào routelink  -->
+            </h3>
+            <a [href]="serverHost+'/page/preview?user='+userName+'&product='+product+'&pageName='+saveUrl(page.fileName)"
+            class="preview-link" target="_blank">{{serverHost+'/page/preview?user='+userName+'&pageName='+page.fileName}}</a>
+            <!-- Tên preview, tạm thời chỗ này để em nhúng link -->
+          </div>
+          <div class="text-right align-self-center">
+            <div class="status d-flex align-items-center justify-content-end" *ngIf="!page.publish">
+              <mat-icon color="accent">remove_circle</mat-icon>&nbsp;Chưa xuất bản
+            </div>
+            <div class="status d-flex align-items-center justify-content-end" *ngIf="page.publish">
+              <mat-icon color="primary">check_circle</mat-icon>&nbsp;Đã xuất bản
+            </div>
+            <div class="time">
+              <i>Tạo lúc: {{page.createdDate|date:'HH:mm, dd/MM/yyyy'}}</i>
+              <!-- Ngày khởi tạo -->
+            </div>
+          </div>
+          <div class="action align-self-center">
+            <button mat-icon-button [matMenuTriggerFor]="actionMenu1">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #actionMenu1="matMenu" xPosition="before" overlapTrigger="false">
+              <!-- Action page, tạm thời để nguyên -->
+              <!-- <button mat-menu-item>Sửa tên</button>
+                <button mat-menu-item>Nhân bản</button> -->
+              <button [attr.data-href]="serverHost+'/page/preview?user='+encodeCharacter(userName)+'&product='+encodeCharacter(product)+'&pageName='+encodeCharacter(page.fileName)+'&publish='+page.publish" class="btn-download-publish"
+                [attr.data-name]="page.fileName" mat-menu-item>Tải file HTML</button>
+              <button mat-menu-item (click)="deletePage(page.fileName)">Xóa</button>
+            </mat-menu>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

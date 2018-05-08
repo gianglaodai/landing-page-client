@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between align-items-top modal-toolbar">
+  <div>
+    <button mat-raised-button color="warn" mat-dialog-close>Đóng</button>
+  </div>
+  <mat-form-field>
+    <input type="text" [(ngModel)]="keyWord" matInput placeholder="Nhập từ khóa" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+<div class="text-right" style="margin-top: -0.5em">
+  <small><i>*Gợi ý: Click đúp vào biểu tượng để thêm vào trang web</i></small>
+</div>
+<mat-tab-group dynamicHeight="true">
+  <mat-tab label="Google Material">
+    <div class="icon-list clearfix">
+      <div class="icon d-inline-block float-left text-center" *ngFor="let icon of MATERIAL_ICONS" (dblclick)="addIcon(icon)">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" [attr.viewBox]="icon['viewBox']">
+          <path [attr.d]="icon['path']"></path>
+        </svg>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Font Awesome">
+    <div class="icon-list clearfix">
+      <div class="icon d-inline-block float-left text-center" *ngFor="let icon of AWESOME_ICONS" (dblclick)="addIcon(icon)">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"
+        [attr.viewBox]="icon['viewBox']">
+          <path [attr.d]="icon['path']"></path>
+        </svg>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Win 10">
+    <div class="icon-list clearfix">
+      <div class="icon d-inline-block float-left text-center" *ngFor="let icon of WIN10_ICONS" (dblclick)="addIcon(icon)">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"
+        [attr.viewBox]="icon['viewBox']">
+          <path [attr.d]="icon['path']"></path>
+        </svg>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Stroke 7">
+    <div class="icon-list clearfix">
+      <div class="icon d-inline-block float-left text-center" *ngFor="let icon of STROKE7_ICONS" (dblclick)="addIcon(icon)">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"
+        [attr.viewBox]="icon['viewBox']">
+          <path [attr.d]="icon['path']"></path>
+        </svg>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

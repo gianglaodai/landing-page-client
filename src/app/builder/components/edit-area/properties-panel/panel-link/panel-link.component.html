@@ -1,0 +1,62 @@
+<mat-form-field>
+  <mat-select placeholder="Kiểu liên kết" [(value)]="linkType">
+    <mat-option value=''>Hủy</mat-option>
+    <mat-option [value]="componentType.LINK_SECTION" value="section">Đi đến Section</mat-option>
+    <mat-option [value]="componentType.LINK_POPUP">Mở popup</mat-option>
+    <mat-option [value]="componentType.LINK_PHONE">Gọi điện thoại</mat-option>
+    <mat-option [value]="componentType.LINK_HREF">Mở trang</mat-option>
+    <mat-option [value]="componentType.LINK_EMAIL">Gửi email</mat-option>
+  </mat-select>
+</mat-form-field>
+<!-- <mat-button-toggle-group [value]="linkType" (change)="linkType=$event.value">
+  <!-- <mat-button-toggle value="" matTooltip="Không liên kết">
+    <mat-icon>not_interested</mat-icon>
+  </mat-button-toggle> -->
+<!-- <mat-button-toggle value="section" matTooltip="Đi đến Section" position="above">
+    <mat-icon>aspect_ratio</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="popup" matTooltip="Mở popup" position="above">
+    <mat-icon>tab</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="phone" matTooltip="Gọi điện thoại" position="above">
+    <mat-icon>phone</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="href" matTooltip="Mở trang" position="above">
+    <mat-icon>link</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="email" matTooltip="Gửi email" position="above">
+    <mat-icon>email</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group> -->
+<div *ngIf="linkType" [ngSwitch]="linkType">
+  <mat-form-field *ngSwitchCase="'section'">
+    <mat-select placeholder="Chọn Section" [(value)]="linkValue">
+      <mat-option>Hủy</mat-option>
+      <mat-option *ngFor="let sectionComponent of sectionComponents" value="#{{sectionComponent.section.id}}">#{{sectionComponent.section.id}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngSwitchCase="'popup'">
+    <mat-form-field *ngIf="popupComponents">
+      <mat-select placeholder="Chọn Popup" [(value)]="linkValue">
+        <mat-option>Hủy</mat-option>
+        <mat-option *ngFor="let popupComponent of popupComponents" value="#{{popupComponent.section.id}}">#{{popupComponent.section.id}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button *ngIf="!popupComponents">Tạo Popup</button>
+  </div>
+  <mat-form-field *ngSwitchCase="'phone'">
+    <input matInput placeholder="Số điện thoại" [(ngModel)]="linkValue" autofocus required />
+  </mat-form-field>
+  <div *ngSwitchCase="'href'">
+    <mat-form-field>
+      <input type="url" matInput placeholder="Nhập URL" [(ngModel)]="linkValue" autofocus required />
+      <mat-hint>VD: https://www.google.com.vn</mat-hint>
+    </mat-form-field>
+    <br/>
+    <mat-checkbox color='primary' [checked]="linkTarget" (change)="toggleTarget($event.checked)">Mở cửa sổ mới</mat-checkbox>
+  </div>
+  <mat-form-field *ngSwitchCase="'email'">
+    <input type="email" matInput placeholder="Nhập email" [(ngModel)]="linkValue" autofocus required />
+    <mat-hint>VD: someone@gmail.com</mat-hint>
+  </mat-form-field>
+</div>

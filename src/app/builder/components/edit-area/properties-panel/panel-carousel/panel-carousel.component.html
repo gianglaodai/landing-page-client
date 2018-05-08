@@ -1,0 +1,19 @@
+<p>
+  <mat-checkbox color="primary" [ngModel]="carousel.auto" (ngModelChange)="carousel.auto=!carousel.auto;reInitSlide()">Tự động chạy</mat-checkbox>
+</p>
+<mat-form-field *ngIf="carousel.auto">
+  <input type="number" min="100" step="100" matInput [ngModel]="carousel.interval" (ngModelChange)="carousel.interval=$event;reInitSlide()"
+    placeholder="Thời gian chạy">
+  <span matSuffix>ms</span>
+</mat-form-field>
+<mat-toolbar>
+  <mat-toolbar-row [ngClass]="{'active':slide===active}" *ngFor="let slide of carousel.slides;let i=index" (click)="active=slide;element.carousel.goto(i)">
+    <span class="mr-auto">Slide {{i+1}}</span>
+    <mat-icon class="example-icon" (click)="clone($event,slide)">content_copy</mat-icon>
+    <mat-icon class="example-icon" (click)="delete($event,slide)">delete</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div *ngIf="active">
+  <hr/>
+  <app-panel-background [component]="active"></app-panel-background>
+</div>

@@ -1,0 +1,24 @@
+.icon-list {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow: auto
+}
+
+.icon {
+    padding: 10px;
+    color: #757575;
+    cursor: pointer;
+    width: 58px;
+    height: 58px;
+}
+
+.icon svg {
+    width: 100%;
+    height: 100%;
+    fill: #666;
+}
+
+.icon i {
+    display: block
+}
+.icon:hover svg{fill: #009FE3}

@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Tùy chỉnh các trường nhập trong #{{component.id}}</h2>
+<mat-dialog-content class="mb-auto">
+  <ng-container *ngIf="formControls?.length">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Các trường nhập đã có</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-toolbar>
+        <mat-toolbar-row *ngFor="let formControl of formControls">
+          <span class="mr-auto">{{formControl?.formControl.placeholder}}</span>
+          <mat-icon (click)="clone(formControl)">content_copy</mat-icon>
+          <mat-icon (click)="delete(formControl)">delete</mat-icon>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </mat-expansion-panel>
+    <br/>
+  </ng-container>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Thêm trường nhập mới</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-toolbar>
+      <mat-toolbar-row *ngFor="let formControl of SUPPORTED_FORM_CONTROLS">
+        <span class="mr-auto">{{formControl?.text}}</span>
+        <mat-icon (click)="add(formControl?.formControl)">add</mat-icon>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </mat-expansion-panel>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-raised-button [mat-dialog-close]="true" color="warn">Đóng</button>
+</mat-dialog-actions>

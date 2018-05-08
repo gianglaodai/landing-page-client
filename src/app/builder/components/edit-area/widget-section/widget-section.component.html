@@ -1,0 +1,30 @@
+<div [attr.app-type]="section.type" *ngIf="section.type==='section'" class="widget-section ui-snap" [id]="section.id" [ngStyle]="section.contentStyle"
+  [style.height.px]="isMobile?section.mobileRect?.dimension?.height:section.rect?.dimension?.height" appSectionResizeable [section]="section">
+  <div class="overlay" [ngStyle]="{'background-color':section.overlay}"></div>
+  <div class="widget-container ui-snap">
+    <!-- <app-section-range #sectionRange></app-section-range> -->
+    <ng-container *ngFor="let component of section.childrens">
+      <app-element *ngIf="!isMobile||!component.mobileHide" #childrensElm appComponentDragable appComponentResizeable [component]="component"
+        class="ui-snap" [parent]="this" [component]="component" [attr.data-id]="component.id" [ngStyle]="getPosition(component)"></app-element>
+    </ng-container>
+  </div>
+</div>
+<app-widget-edit-section *ngIf="section.type==='section'&&!isMobile" [parent]="this" [parent]="this"></app-widget-edit-section>
+<!-- <div class="section-overlay" *ngIf="section.type==='section'" appSectionRange [sectionRange]="sectionRange" [parent]="this"
+  (click)="attachSection()"></div> -->
+<div class="section-overlay" *ngIf="section.type==='section'" (click)="attachSection()"></div>
+<div app-type="popup" class="widget-popup ui-snap" *ngIf="section.type==='popup'" [id]="section.id" [ngStyle]="section.contentStyle"
+[style.height.px]="isMobile?section.mobileRect?.dimension?.height:section.rect?.dimension?.height"
+[style.width.px]="isMobile?section.mobileRect?.dimension?.width:section.rect?.dimension?.width"
+  appPopupResizeable [component]="this">
+  <div class="overlay" [ngStyle]="{'background-color':section.overlay}"></div>
+  <div class="widget-container ui-snap">
+    <ng-container *ngFor="let component of section.childrens">
+      <app-element *ngIf="!isMobile||!component.mobileHide" #childrensElm appComponentDragable appComponentResizeable [component]="component"
+        class="ui-snap" [parent]="this" [component]="component" [attr.data-id]="component.id" [ngStyle]="getPosition(component)"></app-element>
+    </ng-container>
+  </div>
+  <div class="section-overlay" (click)="attachSection()"></div>
+  <app-widget-edit-popup [parent]="this" class="widget-edit"></app-widget-edit-popup>
+</div>
+<div class="popup-overlay" (click)="attachSection()"></div>

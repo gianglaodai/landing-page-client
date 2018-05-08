@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Tạo đường kẻ tự động</h1>
+<form (submit)="onSubmit(gridForm)" #gridForm="ngForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Số cột" name="toal" [(ngModel)]="grid.total" required>
+      <span matSuffix>cột</span>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Khoảng cách các cột" name="padding" [(ngModel)]="grid.padding" required>
+      <span matSuffix>px</span>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" class="mr-auto" (click)="disableGrid($event)">XÓA ĐƯỜNG KẺ TỰ ĐỘNG</button>
+    <button mat-raised-button color="primary" [disabled]="!gridForm.form.valid" type="submit">ÁP DỤNG</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>ĐÓNG</button>
+  </div>
+</form>

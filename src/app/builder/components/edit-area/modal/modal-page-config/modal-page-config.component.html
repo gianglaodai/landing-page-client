@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Cài đặt trang</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Thẻ Title" type="text" [ngModel]="configs.title" (ngModelChange)="configs.title = $event" />
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="3" placeholder="Thẻ Meta Description" [ngModel]="configs.metaDescription" (ngModelChange)="configs.metaDescription = $event"></textarea>
+  </mat-form-field>
+  <mat-form-field class="demo-chip-list">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let keyword of this.configs?.metaKeyword" [selectable]="selectable" [removable]="removable" (remove)="removeKeyword(keyword)">
+        {{keyword}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Thẻ Meta Keyword" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="addKeyword($event)" />
+    </mat-chip-list>
+    <mat-hint><i>Các keyword ngăn cách nhau bởi ENTER hoặc ,</i></mat-hint>
+  </mat-form-field>
+  <br>
+  <div class="form-group">
+    <label>Thẻ Meta Image</label>
+    <div class="flex align-items-center">
+      <img [src]="configs?.metaImage||'assets/img/noimage.png'" class="img-thumbnail" style="max-width:200px;max-height:200px;margin-right: 5px;">
+      <button mat-raised-button (click)="changeMetaImage()">Thay đổi</button>
+    </div>
+  </div>
+  <label>Favicon</label>
+  <div class="flex align-items-center">
+    <img [src]="configs?.favicon||'assets/img/noimage.png'" class="img-thumbnail" style="max-width:60px;max-height:60px;margin-right: 5px;">
+    <button mat-raised-button (click)="changeFavicon()">Thay đổi</button>
+  </div>
+  <br>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-raised-button [mat-dialog-close]="true" color="warn">Đóng</button>
+  <button mat-raised-button color="primary" (click)="saveConfigs()">Cập nhật</button>
+</mat-dialog-actions>

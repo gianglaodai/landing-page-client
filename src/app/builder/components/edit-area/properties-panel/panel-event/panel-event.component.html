@@ -1,0 +1,14 @@
+<div class="form-group">
+  <button mat-raised-button [matMenuTriggerFor]="eventSuggestions">
+    <div class="d-flex align-items-center justify-content-between">
+      <span>Gợi ý mã sự kiện mẫu</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </div>
+  </button>
+  <mat-menu #eventSuggestions="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item *ngFor="let option of options" (click)="selectEventSuggest(option.value)">{{option.name}}</button>
+  </mat-menu>
+</div>
+<mat-form-field>
+  <textarea rows="5" placeholder="Mã theo dõi sự kiện" [ngModel]="tracking" (ngModelChange)="tracking=$event" matInput></textarea>
+</mat-form-field>

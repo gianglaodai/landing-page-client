@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Tùy chỉnh lưu trữ FORM</h2>
+<mat-dialog-content class="mb-auto">
+  <mat-radio-group [(ngModel)]="formAction.type" class="d-flex flex-column">
+    <mat-radio-button value="email" style="margin:5px" color="primary">Gửi email đến địa chỉ</mat-radio-button>
+    <mat-radio-button value="api" style="margin:5px" color="primary">Kết nối đến API</mat-radio-button>
+  </mat-radio-group>
+  <ng-container *ngIf="formAction.type">
+    <hr/>
+    <ng-container *ngIf="formAction.type==='email'">
+      <p>
+        <label>Thông tin bổ sung</label>
+      </p>
+      <mat-form-field>
+        <input type="email" matInput placeholder="Email nhận thông tin" [(ngModel)]="formAction.email.emailAddress" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Subject đính kèm" [(ngModel)]="formAction.email.subject" required>
+      </mat-form-field>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="formAction.type==='api'">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Đường link API, không bao gồm tham số" [(ngModel)]="formAction.apiUrl" required>
+    </mat-form-field>
+    <p>
+      <label>Tham số tương ứng trong API</label>
+    </p>
+    <div class="row">
+      <div class="col-6" *ngFor="let child of formControlChilds;let i=index">
+        <mat-form-field>
+          <input matInput [placeholder]="child?.formControl?.name" [ngModel]="!child?.formControl?.apiName?child?.formControl?.name:child?.formControl?.apiName"
+            (ngModelChange)="child.formControl.apiName=$event" pattern="[A-Za-z0-9_]+" required>
+        </mat-form-field>
+      </div>
+      <div class="col-6 align-self-center">
+        <small><i>Lưu ý: Tên tham số chỉ bao gồm các ký tự số, ký tự chữ và ký tự "_".</i></small>
+      </div>
+    </div>
+  </ng-container>
+  <!-- <div class="d-flex justify-content-between align-items-center" style="margin-top:25px">
+    <button mat-raised-button [mat-dialog-close]="true" color="warn">Đóng</button>
+    <button mat-button matStepperNext>Tiếp theo</button>
+  </div> -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="true" color="warn">Đóng</button>
+</mat-dialog-actions>

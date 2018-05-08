@@ -1,0 +1,14 @@
+<mat-form-field>
+  <input matInput readonly [matDatepicker]="countdownPicker" placeholder="Ngày kết thúc" [value]="date" (dateChange)="date=$event.value">
+  <mat-datepicker-toggle matSuffix [for]="countdownPicker"></mat-datepicker-toggle>
+  <mat-datepicker #countdownPicker></mat-datepicker>
+</mat-form-field>
+
+<div class="d-flex">
+  <mat-form-field style="width: 50%">
+  <input type="number" min="0" max="23" matInput placeholder="Giờ" [(ngModel)]="hours" required />
+  </mat-form-field>
+  <mat-form-field style="width: 50%">
+    <input type="number" min="0" max="59" matInput placeholder="Phút" [(ngModel)]="minutes" required />
+  </mat-form-field>
+</div>

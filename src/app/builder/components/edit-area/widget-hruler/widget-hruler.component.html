@@ -1,0 +1,8 @@
+<div id="h-ruler" (click)="addSnapLine($event)">
+  <div class="numbers" #hNumbers>
+    <div class="number" *ngFor="let number of numbers">{{number}}</div>
+  </div>
+</div>
+<div id="h-snap-lines">
+  <app-hsnap-line *ngFor="let top of snapLines" class="ui-snap" [snapLines]="snapLines" [ngStyle]="{'top.px':top}" [top]="top"></app-hsnap-line>
+</div>

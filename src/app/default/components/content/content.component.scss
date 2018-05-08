@@ -1,0 +1,68 @@
+:host {
+    display: block;
+    margin-top: 100px;
+}
+
+.page-action h3 {
+    color: #a8aeb7;
+    line-height: 18px;
+    margin-bottom: 0;
+}
+
+.page-action .search {
+    max-width: 400px;
+    margin: 0 20px;
+    min-width: 300px;
+    position: relative;
+}
+
+.page-action .search input {
+    border-radius: 30px;
+}
+
+.page-action .search .material-icons {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    color: #999;
+}
+
+.mat-card {
+    padding: 15px;
+}
+
+.page-list .page-icon {
+    font-size: 20px;
+    padding-right: 15px;
+}
+
+.page-list h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #41464d;
+    line-height: 29px;
+    margin-bottom: 5px;
+}
+
+.page-list .preview-link {
+    color: #ccc;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.page-list .status {
+    margin-bottom: 5px;
+}
+
+.page-list .time {
+    font-size: 13px;
+}
+
+.page-list .action {
+    padding-left: 10px;
+}
+
+.btn-filter {
+    border: 1px solid rgba(6, 21, 40, .1);
+    background-color: #fff;
+}

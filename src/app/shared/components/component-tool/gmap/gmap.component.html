@@ -1,0 +1,7 @@
+<agm-map [latitude]="component.gmap.latitude" [longitude]="component.gmap.longitude" [mapTypeId]="component.gmap.mapTypeId"
+  [zoom]="component.gmap.zoom" #agm>
+  <agm-marker [latitude]="component.gmap.latitude" [longitude]="component.gmap.longitude">
+    <agm-info-window [isOpen]="true" [maxWidth]="'200'">{{component.gmap.markerLabel}}</agm-info-window>
+  </agm-marker>
+</agm-map>
+<ng-content></ng-content>

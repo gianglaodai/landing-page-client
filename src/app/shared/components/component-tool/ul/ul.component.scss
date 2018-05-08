@@ -1,0 +1,26 @@
+:host ::ng-deep ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    li {
+        margin-bottom: var(--margin-bottom);
+        counter-increment: linum;
+    }
+    li:before {
+        float: left;
+        clear: left;
+        contain: content;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        padding: 0 !important;
+        background-image: var(--background-image);
+        width: var(--width);
+        height: var(--height);
+        font-size: var(--font-size);
+        margin-top: var(--margin-top);
+        margin-right: var(--margin-right);
+        color: var(--color);
+        content: var(--content);
+    }
+}

@@ -1,0 +1,68 @@
+<mat-form-field>
+  <input type="number" min="0" matInput [(ngModel)]="borderWidth" placeholder="Độ rộng" min="0" required>
+  <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field>
+  <mat-select placeholder="Kiểu" [(ngModel)]="borderStyle" class="{{borderStyle}} select-border">
+    <mat-option value="">Không viền</mat-option>
+    <mat-option value="solid">
+      <span style="display:block;border:solid #000;border-width:1px 0 0;"></span>
+    </mat-option>
+    <mat-option value="dotted">
+      <span style="display:block;border:dotted #000;border-width:1px 0 0;"></span>
+    </mat-option>
+    <mat-option value="dashed">
+      <span style="display:block;border:dashed #000;border-width:1px 0 0;"></span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<app-colorpicker [color]="borderColor" label="Màu" (changeColor)="borderColor=$event"></app-colorpicker>
+<div *ngIf="[componentType.BUTTON,componentType.IMAGE,componentType.BOX].indexOf(component.type)>=0">
+  <mat-form-field>
+    <input [matMenuTriggerFor]="borderRadiusMenu" matInput [ngModel]="borderRadiusArr[0]===borderRadiusArr[1]
+        &&borderRadiusArr[1]===borderRadiusArr[2]&&borderRadiusArr[2]===borderRadiusArr[3]?borderRadiusArr[0]+'px'
+        :borderRadiusArr[0]+'px, '+borderRadiusArr[1]+'px, '+borderRadiusArr[2]+'px, '+borderRadiusArr[3]+'px'" placeholder="Bo góc"
+      readonly required>
+    <span matSuffix>
+      <div class="mat-select-arrow"></div>
+    </span>
+  </mat-form-field>
+  <mat-menu #borderRadiusMenu="matMenu" overlapTrigger="false">
+    <div mat-menu-item (click)="$event.stopPropagation()">
+      <mat-form-field>
+        <input type="number" min="0" required matInput placeholder="Tất cả" [ngModel]="borderRadiusArr[0]===borderRadiusArr[1]
+        &&borderRadiusArr[1]===borderRadiusArr[2]&&borderRadiusArr[2]===borderRadiusArr[3]?borderRadiusArr[0]:'0'" (keydown)="inputKeyDown(-1,$event)"
+          (ngModelChange)="setBorderRadius(-1,$event)">
+        <span matSuffix>px</span>
+      </mat-form-field>
+    </div>
+    <div mat-menu-item (click)="$event.stopPropagation()">
+      <mat-form-field>
+        <input type="number" min="0" required matInput placeholder="Góc trái trên" [ngModel]="borderRadiusArr[0]" (keydown)="inputKeyDown(0,$event)"
+          (ngModelChange)="setBorderRadius(0,$event)">
+        <span matSuffix>px</span>
+      </mat-form-field>
+    </div>
+    <div mat-menu-item (click)="$event.stopPropagation()">
+      <mat-form-field>
+        <input type="number" min="0" required matInput placeholder="Góc phải trên" [ngModel]="borderRadiusArr[1]" (keydown)="inputKeyDown(1,$event)"
+          (ngModelChange)="setBorderRadius(1,$event)">
+        <span matSuffix>px</span>
+      </mat-form-field>
+    </div>
+    <div mat-menu-item (click)="$event.stopPropagation()">
+      <mat-form-field>
+        <input type="number" min="0" required matInput placeholder="Góc trái dưới" [ngModel]="borderRadiusArr[3]" (keydown)="inputKeyDown(3,$event)"
+          (ngModelChange)="setBorderRadius(3,$event)">
+        <span matSuffix>px</span>
+      </mat-form-field>
+    </div>
+    <div mat-menu-item (click)="$event.stopPropagation()">
+      <mat-form-field>
+        <input type="number" min="0" required matInput placeholder="Góc phải dưới" [ngModel]="borderRadiusArr[2]" (keydown)="inputKeyDown(2,$event)"
+          (ngModelChange)="setBorderRadius(2,$event)">
+        <span matSuffix>px</span>
+      </mat-form-field>
+    </div>
+  </mat-menu>
+</div>

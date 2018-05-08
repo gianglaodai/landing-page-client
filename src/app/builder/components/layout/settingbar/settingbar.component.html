@@ -1,0 +1,161 @@
+<div id="setting-bar">
+  <!-- <div class="d-flex"> -->
+  <!-- <button mat-icon-button class="hide-bar" matTooltipPosition="below" matTooltip="Đóng lại">
+      <mat-icon aria-label="Example icon-button with a heart icon">chevron_right</mat-icon>
+    </button> -->
+  <h2 class="component-name" *ngIf="selectedComponent">#{{cService.selectedComponent.component.id}}</h2>
+  <h2 class="component-name" *ngIf="selectedSection&&!selectedComponent">#{{sService.selectedSection.section.id}}</h2>
+  <!-- </div> -->
+  <mat-accordion *ngIf="selectedComponent&&isMobile">
+    <mat-expansion-panel [expanded]="componentType.HEADING_COMPONENT.indexOf(selectedComponent.component.type) >= 0||
+          selectedComponent.component.type===componentType.P||
+        selectedComponent.component.type===componentType.BUTTON" *ngIf="componentType.TEXT_COMPONENT.indexOf(selectedComponent.component.type) >= 0||
+          selectedComponent.component.type===componentType.BUTTON||selectedComponent.component.type===componentType.COUNTDOWN">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh chữ</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-character [element]="selectedComponent"></app-panel-character>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion *ngIf="selectedComponent&&!isMobile">
+    <mat-expansion-panel [expanded]="componentType.CAROUSEL===selectedComponent.component.type" *ngIf="componentType.CAROUSEL===selectedComponent.component.type">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh Slide</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-carousel [element]="selectedComponent"></app-panel-carousel>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="componentType.UL===selectedComponent.component.type" *ngIf="componentType.UL===selectedComponent.component.type">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh danh sách</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-list [component]="selectedComponent.component"></app-panel-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="selectedComponent.component.type===componentType.YOUTUBE" *ngIf="selectedComponent.component.type===componentType.YOUTUBE">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh Youtube</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-youtube [element]="selectedComponent"></app-panel-youtube>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="selectedComponent.component.type===componentType.IMAGE" *ngIf="selectedComponent.component.type===componentType.IMAGE">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh ảnh</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-image [component]="selectedComponent.component"></app-panel-image>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="selectedComponent.component.type===componentType.COUNTDOWN" *ngIf="selectedComponent.component.type===componentType.COUNTDOWN">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh đồng hồ</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-countdown [component]="selectedComponent.component"></app-panel-countdown>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="selectedComponent.component.type===componentType.COMMENTS" *ngIf="selectedComponent.component.type===componentType.COMMENTS">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh Bình luận</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-comments [component]="selectedComponent.component"></app-panel-comments>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="componentType.HEADING_COMPONENT.indexOf(selectedComponent.component.type) >= 0||
+        selectedComponent.component.type===componentType.P||
+      selectedComponent.component.type===componentType.BUTTON" *ngIf="componentType.TEXT_COMPONENT.indexOf(selectedComponent.component.type) >= 0||
+        selectedComponent.component.type===componentType.BUTTON||selectedComponent.component.type===componentType.COUNTDOWN">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh chữ</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-character [element]="selectedComponent"></app-panel-character>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="componentType.HEADING_COMPONENT.indexOf(selectedComponent.component.type) >= 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh tiêu đề</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-heading [element]="selectedComponent"></app-panel-heading>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true" *ngIf="selectedComponent.component.type===componentType.FORM">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh FORM</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-form [component]="selectedComponent.component"></app-panel-form>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true" *ngIf="componentType.FORM_CONTROL.indexOf(selectedComponent.component.type)>=0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh phần tử FORM</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-form-control [component]="selectedComponent.component"></app-panel-form-control>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true" *ngIf="selectedComponent.component.type===componentType.GMAP">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh bản đồ</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-gmap [element]="selectedComponent"></app-panel-gmap>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="selectedComponent.component.type===componentType.BOX" *ngIf="[componentType.BUTTON,componentType.BOX].indexOf(selectedComponent.component.type) >= 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh Background</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-background [component]="selectedComponent.component"></app-panel-background>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="componentType.TEXT_COMPONENT.indexOf(selectedComponent.component.type) >= 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh đổ bóng chữ</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-textshadow [component]="selectedComponent.component"></app-panel-textshadow>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="[componentType.VLINE,componentType.HLINE].indexOf(selectedComponent.component.type) >= 0"
+      *ngIf="[componentType.IMAGE,componentType.BUTTON,componentType.BOX,componentType.VLINE,componentType.HLINE,componentType.YOUTUBE,componentType.YOUTUBE,componentType.GMAP].indexOf(selectedComponent.component.type) >= 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="[componentType.VLINE,componentType.HLINE].indexOf(selectedComponent.component.type) >= 0">Tùy chỉnh đường kẻ</mat-panel-title>
+        <mat-panel-title *ngIf="[componentType.IMAGE,componentType.BUTTON,componentType.BOX,componentType.YOUTUBE,componentType.GMAP].indexOf(selectedComponent.component.type) >= 0">Tùy chỉnh viền</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-border [component]="selectedComponent.component"></app-panel-border>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="[componentType.IMAGE,componentType.BUTTON,componentType.BOX,componentType.YOUTUBE,componentType.YOUTUBE,componentType.GMAP].indexOf(selectedComponent.component.type) >= 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh đổ bóng</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-boxshadow [component]="selectedComponent.component"></app-panel-boxshadow>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="selectedComponent.component.type===componentType.SHAPE" *ngIf="selectedComponent.component.type===componentType.SHAPE">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh Biểu tượng</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-icon [component]="selectedComponent.component"></app-panel-icon>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="[componentType.UL,componentType.COMMENTS,componentType.FORM].indexOf(selectedComponent.component.type)<0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh liên kết</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-link [component]="selectedComponent.component"></app-panel-link>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="[componentType.UL,componentType.COMMENTS,componentType.FORM].indexOf(selectedComponent.component.type)<0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh theo dõi mã sự kiện</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-event [component]="selectedComponent.component"></app-panel-event>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="selectedComponent.component.type!==componentType.FORM">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh hiệu ứng động</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-animation [component]="selectedComponent.component"></app-panel-animation>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="selectedComponent.component.type!==componentType.GROUP">
+      <mat-expansion-panel-header>
+        <mat-panel-title>CSS nâng cao</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-css [component]="selectedComponent.component"></app-panel-css>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="[componentType.FORM,componentType.COMMENTS].indexOf(selectedComponent.component.type)<0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Ghim phần tử (sticky)</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-sticky [component]="selectedComponent.component"></app-panel-sticky>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion *ngIf="selectedSection&&!selectedComponent">
+    <mat-expansion-panel [expanded]="selectedSection.section" *ngIf="selectedSection.section">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tùy chỉnh Background</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-panel-background [element]="selectedSection" [component]="selectedSection.section"></app-panel-background>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,0 +1,16 @@
+<p>
+  <mat-checkbox color="primary" [checked]="sticky.using" (change)="sticky.using=!sticky.using">Ghim phần tử</mat-checkbox>
+</p>
+<div *ngIf="sticky.using">
+  <mat-form-field>
+    <mat-select placeholder="Vị trí" [(value)]="sticky.position">
+      <mat-option value="top">Trên cùng</mat-option>
+      <mat-option value="bottom">Dưới cùng</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" min="0" [ngModel]="this.sticky.padding ? this.sticky.padding.replace('px','') : '0'" (ngModelChange)="sticky.padding=$event+'px'"
+      matInput placeholder="Khoảng cách">
+    <span matSuffix>px</span>
+  </mat-form-field>
+</div>

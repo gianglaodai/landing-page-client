@@ -1,0 +1,25 @@
+<app-default-menu></app-default-menu>
+<div class="container">
+  <ul class="categories list-unstyled">
+    <li *ngFor="let category of categories" [ngClass]="{'active':category===active}">
+      <a (click)="loadCategory(category)">{{category.label}}</a>
+    </li>
+  </ul>
+  <div class="templates">
+    <div class="row">
+      <div class="col-12 col-xs-6 col-sm-4" *ngFor="let template of templates">
+        <div class="template">
+          <div class="img-cover">
+            <img [src]="hostUrl+template.thumbnailUrl" [alt]="template.fileName">
+            <div class="d-flex justify-content-center align-items-center flex-column template-action">
+              <button class="btn btn-success" (click)="selectTemplate(template)">Sử dụng</button>
+              <a [href]="hostUrl+'/template/preview/'+template.catalog+'?fileName='+template.fileName" target="_blank"
+              class="btn btn-light">Xem trước</a>
+            </div>
+          </div>
+          <h3 class="text-center">{{template.fileName}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

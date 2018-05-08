@@ -1,0 +1,10 @@
+:host ::ng-deep {
+    span {
+        width: 25%;
+        white-space: nowrap;
+    }
+    span.two-dots {
+        width: auto;
+        padding: 0 5px;
+    }
+}

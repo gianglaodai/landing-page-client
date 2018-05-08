@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.mat-dialog-content {
+  padding: 10px 15px;
+}
+
+.mat-toolbar {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+}
+
+.mat-toolbar-row {
+  height: 35px;
+  cursor: pointer;
+}
+
+.mat-toolbar-row.active {
+  background-color: #1e88e5;
+  color: #fff;
+}
+
+.mat-toolbar .mat-icon {
+  font-size: 16px;
+  color: inherit;
+  height: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.mat-toolbar .mat-icon:hover {
+  color: #666;
+  cursor: pointer;
+}

@@ -1,0 +1,14 @@
+<div class="carousel-inner">
+  <div [ngClass]="{'carousel-item':true,'active':!i}" [style.height.px]="component.rect.dimension.height" *ngFor="let slide of component.carousel.slides; let i = index"
+    [ngStyle]="slide.contentStyle">
+    <div class="carousel-overlay" [style.background-color]="slide.overlay"></div>
+  </div>
+</div>
+<a class="carousel-control-prev" (click)="prev()" role="button">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" (click)="next()" role="button">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="sr-only">Next</span>
+</a>

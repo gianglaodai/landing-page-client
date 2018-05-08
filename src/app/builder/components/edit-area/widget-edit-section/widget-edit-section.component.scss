@@ -1,0 +1,81 @@
+:host {
+    z-index: 2;
+}
+
+.edit-section {
+    box-shadow: 0 1px 3px rgba(13, 26, 44, .16), 0 5px 9px rgba(13, 26, 44, .2);
+    border-radius: 5px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -65px;
+    text-align: center;
+    background: #fff;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.edit-section ul {
+    padding: 0;
+    margin: 0
+}
+
+.edit-section ul li {
+    list-style: none;
+    border-bottom: 1px solid #F0F3F5;
+    cursor: pointer;
+    padding-bottom: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.edit-section ul li .svg-icons,
+.edit-section ul li i {
+    color: grey;
+    fill: grey;
+    padding: 6px;
+    font-size: 20px;
+    display: inline-block
+}
+
+.edit-section ul li:last-child {
+    border: 0
+}
+
+.edit-section ul li:hover {
+    background: #F0F3F5
+}
+
+.add-section {
+    text-transform: uppercase;
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    margin-left: -80px;
+    z-index: 9999;
+}
+
+.edit-section-mobile {
+    position: absolute;
+    top: 20px;
+    left: 100%;
+    box-shadow: 0 1px 3px rgba(13, 26, 44, .16), 0 5px 9px rgba(13, 26, 44, .2);
+    background: #fff;
+    border-radius: 5px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.edit-section-mobile ul>li>a {
+    display: block;
+    font-size: 20px;
+    color: grey;
+    padding: 10px 15px;
+    line-height: 30px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.edit-section-mobile ul>li>a:hover {
+    background: #F0F3F5;
+}

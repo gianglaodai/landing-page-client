@@ -1,0 +1,155 @@
+<div class="container-fluid">
+  <div class="d-flex align-items-center">
+    <a href="javascript:void(0)" *ngIf="!isMobile" appOpenModalTemplate [ngClass]="{'item add-section':true,'mr-auto':!isShowAddComponent}">
+      <mat-icon>aspect_ratio</mat-icon>
+      Đoạn mẫu
+    </a>
+    <div class="d-flex list-unstyled flex-row mr-auto item-list" *ngIf="isShowAddComponent">
+      <ng-container *ngIf="!isMobile">
+        <a href="javascript:void(0)" appOpenModalImage [isMultiple]="true" class="item">
+          <mat-icon>add_a_photo</mat-icon>
+          Thêm ảnh
+        </a>
+        <a href="javascript:void(0)" [appAddComponent]="componentType.BUTTON" class="item">
+          <mat-icon>mouse</mat-icon>
+          Nút bấm
+        </a>
+        <a href="javascript:void(0)" [matMenuTriggerFor]="headingMenu" class="item">
+          <mat-icon>font_download</mat-icon>
+          Tiêu đề
+        </a>
+        <mat-menu #headingMenu="matMenu" [overlapTrigger]="false" class="item">
+          <a mat-menu-item href="javascript:void(0)" *ngFor="let i of [1,2,3,4,5,6]" appAddComponent="H{{i}}">
+            <span class="H{{i}}">Tiêu đề H{{i}}</span>
+          </a>
+        </mat-menu>
+        <a href="javascript:void(0)" [appAddComponent]="componentType.P" class="item">
+          <mat-icon>text_fields</mat-icon>
+          Đoạn văn
+        </a>
+        <a href="javascript:void(0)" [appAddComponent]="componentType.UL" class="item">
+          <mat-icon>format_list_numbered</mat-icon>
+          Danh sách
+        </a>
+        <a href="javascript:void(0)" [matMenuTriggerFor]="shapeMenu" class="item">
+          <mat-icon>check_box_outline_blank</mat-icon>
+          Hình khối
+        </a>
+        <mat-menu #shapeMenu="matMenu" [overlapTrigger]="false">
+          <a mat-menu-item href="javascript:void(0)" [appAddComponent]="componentType.BOX">
+            <mat-icon>check_box_outline_blank</mat-icon>
+            <span>Hình hộp</span>
+          </a>
+          <a mat-menu-item href="javascript:void(0)" appOpenModalIcon>
+            <mat-icon>insert_emoticon</mat-icon>
+            <span>Biểu tượng</span>
+          </a>
+          <a mat-menu-item href="javascript:void(0)" [appAddComponent]="componentType.HLINE">
+            <mat-icon>remove</mat-icon>
+            <span>Kẻ ngang</span>
+          </a>
+          <a mat-menu-item href="javascript:void(0)" [appAddComponent]="componentType.VLINE">
+            <mat-icon class="rotate90">remove</mat-icon>
+            <span>Kẻ dọc</span>
+          </a>
+        </mat-menu>
+        <a href="javascript:void(0)" class="item" [appAddComponent]="componentType.FORM">
+          <mat-icon>content_paste</mat-icon>
+          Biểu mẫu
+        </a>
+        <a href="javascript:void(0)" appOpenModalPopup class="item">
+          <mat-icon>tab</mat-icon>
+          Popup
+        </a>
+        <a href="javascript:void(0)" title="" [matMenuTriggerFor]="utilMenu" class="item">
+          <mat-icon>extension</mat-icon>
+          Tiện ích
+        </a>
+        <mat-menu #utilMenu="matMenu" [overlapTrigger]="false">
+          <a mat-menu-item [appAddComponent]="componentType.CAROUSEL">
+            <mat-icon>slideshow</mat-icon>
+            <span>Slideshow</span>
+          </a>
+          <a mat-menu-item [appAddComponent]="componentType.YOUTUBE">
+            <mat-icon>video_library</mat-icon>
+            <span>Youtube</span>
+          </a>
+          <a mat-menu-item [appAddComponent]="componentType.GMAP">
+            <mat-icon>my_location</mat-icon>
+            <span>Google map</span>
+          </a>
+          <a mat-menu-item [appAddComponent]="componentType.COMMENTS">
+            <mat-icon>comment</mat-icon>
+            <span>Facebook comments</span>
+          </a>
+          <a mat-menu-item [appAddComponent]="componentType.COUNTDOWN">
+            <mat-icon>timer</mat-icon>
+            <span>Đồng hồ đếm ngược</span>
+          </a>
+          <a mat-menu-item [appAddComponent]="componentType.HTML">
+            <mat-icon>code</mat-icon>
+            <span>Mã HTML</span>
+          </a>
+        </mat-menu>
+        <a href="javascript:void(0)" appOpenModalProduct [isMultiple]="false" class="item">
+          <mat-icon>card_giftcard</mat-icon>
+          Sản phẩm
+        </a>
+      </ng-container>
+      <a href="javascript:void(0)" title="" [matMenuTriggerFor]="layerMenu" class="item">
+        <mat-icon>layers</mat-icon>
+        Layer
+      </a>
+      <mat-menu #layerMenu="matMenu" [overlapTrigger]="false">
+        <a mat-menu-item [matMenuTriggerFor]="sectionMenu">SECTION</a>
+        <a mat-menu-item [matMenuTriggerFor]="popupMenu" *ngIf="popupComponents?.length">POPUP</a>
+      </mat-menu>
+      <mat-menu #sectionMenu="matMenu" [overlapTrigger]="false">
+        <a mat-menu-item *ngFor="let sectionComponent of sectionComponents" (click)="scrollToSection($event,sectionComponent)">#{{sectionComponent.section.id}}</a>
+      </mat-menu>
+      <mat-menu #popupMenu="matMenu" [overlapTrigger]="false">
+        <a mat-menu-item *ngFor="let popupComponent of popupComponents" [appOpenPopup]="popupComponent">#{{popupComponent.section.id}}</a>
+      </mat-menu>
+      <ng-container *ngIf="isMobile&&(hiddenSections?.length||hiddenComps?.length)">
+        <a href="javascript:void(0)" title="" [matMenuTriggerFor]="layerHidden" class="item">
+          <mat-icon>visibility_off</mat-icon>
+          Layer ẩn
+        </a>
+        <mat-menu #layerHidden="matMenu" [overlapTrigger]="false">
+          <a mat-menu-item [matMenuTriggerFor]="hiddenSectionMenu" *ngIf="hiddenSections?.length">SECTION</a>
+          <a mat-menu-item [matMenuTriggerFor]="hiddenComponentMenu" *ngIf="hiddenComps?.length">COMPONENT</a>
+        </mat-menu>
+        <mat-menu #hiddenSectionMenu="matMenu" [overlapTrigger]="false">
+          <a mat-menu-item *ngFor="let section of hiddenSections">#{{section.id}}
+            <i class="material-icons show-elm" (click)="section.mobileHide=false">visibility</i>
+          </a>
+        </mat-menu>
+        <mat-menu #hiddenComponentMenu="matMenu" [overlapTrigger]="false">
+          <a mat-menu-item *ngFor="let component of hiddenComps">#{{component.id}}
+            <i class="material-icons show-elm" (click)="component.mobileHide=false">visibility</i>
+          </a>
+        </mat-menu>
+      </ng-container>
+    </div>
+    <a href="javascript:void(0)" title="" [matMenuTriggerFor]="settingMenu" class="item">
+      <mat-icon>settings</mat-icon>
+      Cài đặt
+    </a>
+    <mat-menu #settingMenu="matMenu" [overlapTrigger]="false">
+      <div mat-menu-item (click)="$event.stopPropagation()">
+        <label class="d-flex align-items-center justify-content-between">Ẩn/hiện tùy chỉnh&nbsp;
+          <mat-slide-toggle color="primary" [(ngModel)]="isShowSettingBar"></mat-slide-toggle>
+        </label>
+      </div>
+      <div mat-menu-item (click)="$event.stopPropagation()">
+        <label class="d-flex align-items-center justify-content-between" style="width:100%">Ẩn/hiện thước kẻ&nbsp;
+          <mat-slide-toggle color="primary" [(ngModel)]="isShowRuler"></mat-slide-toggle>
+        </label>
+      </div>
+      <a mat-menu-item (click)="openAutoGridModal()">Tạo đường kẻ tự động</a>
+      <!-- <a mat-menu-item>Quản lý font</a> -->
+      <a mat-menu-item (click)="openPageConfigModal()">Cài đặt trang</a>
+      <a mat-menu-item (click)="openTrackingModal()">Mã theo dõi sự kiện</a>
+    </mat-menu>
+  </div>
+</div>

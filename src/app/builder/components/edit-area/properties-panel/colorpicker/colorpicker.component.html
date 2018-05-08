@@ -1,0 +1,9 @@
+<mat-form-field>
+  <input matInput [placeholder]="label" value=" " readonly [ngStyle]="{'background-color':color}" (click)="attachColorPicker=true">
+</mat-form-field>
+<div class="color-picker-container" *ngIf="attachColorPicker">
+  <span [cpOKButton]="true" (colorPickerChange)="colorPickerChange($event)" [cpPresetColors]="presetColors"
+   [colorPicker]="color" (colorPickerCancel)="closePicker()" (colorPickerSelect)="closePicker()"
+   [cpOKButtonClass]="'btn btn-primary btn-xs float-right'" cpOKButtonText="Đồng ý" cpOutputFormat="rgba" [cpToggle]="true" [cpSaveClickOutside]="true"
+   [cpCancelButtonClass]="'btn btn-danger btn-xs float-left'" cpCancelButtonText="Hủy" [cpCancelButton]="true" [cpDialogDisplay]="'inline'"></span>
+</div>

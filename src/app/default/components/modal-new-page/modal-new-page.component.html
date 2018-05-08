@@ -1,0 +1,31 @@
+<div class="text-right">
+  <button mat-mini-fab color="warn" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<h2 class="text-center">TẠO LANDING PAGE MỚI</h2>
+<div class="row">
+  <div class="col-sm-6 col-12">
+    <a class="d-block text-center" (click)="closeDialog()" routerLink="/templates"
+    [queryParams]="{'userName':userName,'product':product}">
+      <i class="ion-grid"></i>
+      <p>Sử dụng
+        <b>kho giao diện</b> mẫu miễn phí</p>
+    </a>
+  </div>
+  <div class="col-sm-6 col-12">
+    <a (click)="createBlankPage()" class="d-block text-center">
+      <i class="ion-document"></i>
+      <p>Sử dụng
+        <b>trang trắng</b>
+      </p>
+    </a>
+  </div>
+  <!-- <div class="col-sm-4 col-12">
+    <a href="" class="d-block text-center">
+      <i class="ion-ios-upload-outline"></i>
+      <p>Tải
+        <b>file giao diện .ldp</b> từ máy tính</p>
+    </a>
+  </div> -->
+</div>

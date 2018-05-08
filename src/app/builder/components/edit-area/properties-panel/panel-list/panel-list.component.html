@@ -1,0 +1,65 @@
+<mat-form-field>
+  <mat-select placeholder="Kiểu danh sách" [(value)]="ulType">
+    <mat-option value="list">Danh sách</mat-option>
+    <mat-option value="image">Ảnh</mat-option>
+    <mat-option value="icon">Icon</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field *ngIf="ulType==='list'">
+  <mat-select placeholder="Kiểu đánh số" [value]="iconContent" (selectionChange)="beforeCounter=$event.value">
+    <mat-option value="' '">
+      <img src="assets/img/icon1.png" alt="" width="40"> Không đánh số</mat-option>
+    <mat-option value="counter(linum,decimal)">
+      <img src="assets/img/icon2.png" alt="" width="40"> Chữ số 1-9</mat-option>
+    <mat-option value="counter(linum,upper-alpha)">
+      <img src="assets/img/icon3.png" alt="" width="40"> Chữ cái ABC</mat-option>
+    <mat-option value="counter(linum,lower-alpha)">
+      <img src="assets/img/icon5.png" alt="" width="40"> Chữ cái abc</mat-option>
+    <mat-option value="counter(linum,upper-roman)">
+      <img src="assets/img/icon4.png" alt="" width="40"> Số la mã hoa</mat-option>
+    <mat-option value="counter(linum,lower-roman)">
+      <img src="assets/img/icon6.png" alt="" width="40"> Số la mã thường</mat-option>
+    <mat-option value="counter(linum,square)">
+      <img src="assets/img/icon7.png" alt="" width="40"> Chấm vuông</mat-option>
+    <mat-option value="counter(linum,disc)">
+      <img src="assets/img/icon8.png" alt="" width="40"> Chấm tròn</mat-option>
+  </mat-select>
+</mat-form-field>
+<button *ngIf="ulType==='icon'" mat-raised-button color="primary" class="btn-block" style="margin-bottom:10px" appOpenModalIcon
+  [component]="component">Chọn biểu tượng</button>
+<div *ngIf="ulType==='image'">
+  <mat-form-field>
+    <input type="text" matInput [(ngModel)]="component['ulData']['iconStyles']['--background-image']" placeholder="Link ảnh"
+      required>
+  </mat-form-field>
+  <div class="mat-form-field-wrapper">
+    <button mat-raised-button color="primary" class="text-uppercase btn-block" appOpenModalImage [isMultiple]="false" [component]="component">Thay đổi ảnh</button>
+  </div>
+</div>
+<app-colorpicker *ngIf="ulType!=='image'" label="Màu" [color]="component['ulData']['iconStyles']['--color']"
+(changeColor)="changeColor($event)"></app-colorpicker>
+<mat-form-field>
+  <input type="number" matInput [ngModel]="component['ulData']['liStyles']['--margin-bottom'].replace('px','')"
+  (ngModelChange)="component['ulData']['liStyles']['--margin-bottom']=$event+'px'"
+    placeholder="Khoảng cách các đầu mục" required>
+    <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [ngModel]="component['ulData']['iconStyles']['--width'].replace('px','')"
+  (ngModelChange)="component['ulData']['iconStyles']['--height']=component['ulData']['iconStyles']['--width']=$event+'px';
+  component['ulData']['iconStyles']['--font-size']=($event/2)+'px'"
+    placeholder="Kích thước icon" required>
+    <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [ngModel]="component['ulData']['iconStyles']['--margin-top'].replace('px','')"
+  (ngModelChange)="component['ulData']['iconStyles']['--margin-top']=$event+'px'"
+    placeholder="Khoảng cách icon/đầu mục" required>
+    <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [ngModel]="component['ulData']['iconStyles']['--margin-right'].replace('px','')"
+  (ngModelChange)="component['ulData']['iconStyles']['--margin-right']=$event+'px'"
+    placeholder="Khoảng cách icon/chữ" required>
+    <span matSuffix>px</span>
+</mat-form-field>

@@ -1,0 +1,10 @@
+<app-colorpicker [color]="formStyles['color']" label="Màu chữ Input" (changeColor)="formStyles.color=$event"></app-colorpicker>
+<app-colorpicker [color]="formStyles['controlBackground']" label="Màu nền Input"
+(changeColor)="formStyles.controlBackground=$event"></app-colorpicker>
+<app-colorpicker [color]="formStyles['placeholderColor']" label="Màu chữ Placeholder"
+(changeColor)="formStyles.placeholderColor=$event"></app-colorpicker>
+<mat-form-field>
+  <input type="number" min="1" matInput placeholder="Cỡ chữ Input" name="markerLabel" [ngModel]="formStyles?.fontSize?.replace('px','')"
+    (ngModelChange)="formStyles.fontSize=$event+'px'" required />
+  <span matSuffix>px</span>
+</mat-form-field>

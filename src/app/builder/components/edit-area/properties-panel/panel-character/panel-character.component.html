@@ -1,0 +1,90 @@
+<app-colorpicker *ngIf="!isMobile" label="Màu chữ" [color]="element.component.contentStyle['color']" (changeColor)="element.component.contentStyle['color']=$event"></app-colorpicker>
+<mat-form-field>
+  <input type="number" matInput placeholder="Cỡ chữ" min="1" (ngModelChange)="fontSizeChange($event)"
+  [ngModel]="contentStyle['font-size']?contentStyle['font-size'].split('px')[0]:getComputedStyle('font-size').split('px')[0]">
+  <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field *ngIf="!isMobile">
+  <mat-select placeholder="Kiểu Font" [(value)]="element.component.contentStyle['font-family']" [ngStyle]="{'font-weight':element.component.contentStyle['font-weight'],'font-family':element.component.contentStyle['font-family']}">
+    <mat-option *ngFor="let font of fonts" [value]="font.family" [style.font-family]="font.family">{{font.family}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field *ngIf="!isMobile">
+  <mat-select placeholder="Độ đậm" [(value)]="element.component.contentStyle['font-weight']" [ngStyle]="{'font-weight':element.component.contentStyle['font-weight'],'font-family':element.component.contentStyle['font-family']}">
+    <mat-option *ngFor="let font of fontWeights" [value]="font.weight" [ngStyle]="{'font-weight':font.weight,'font-family':element.component.contentStyle['font-family']}">{{font.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<div class="mat-form-field-wrapper">
+  <label>Thiết lập</label>&emsp;
+  <div *ngIf="!isMobile; then formatBold"></div>
+  <ng-template #formatBold>
+    <button *ngIf="!isMobile" mat-icon-button [matMenuTriggerFor]="boldMenu" matTooltipPosition="above" matTooltip="Kiểu chữ">
+      <mat-icon>format_bold</mat-icon>
+    </button>
+    <mat-menu #boldMenu="matMenu" [overlapTrigger]="false">
+      <mat-button-toggle-group multiple (click)="$event.stopPropagation()">
+        <mat-button-toggle [checked]="element.component.contentStyle['font-weight']=='700'" (change)="element.component.contentStyle['font-weight']=$event.source.checked?'700':'400'"
+          matTooltipPosition="below" matTooltip="Chữ đậm">
+          <mat-icon>format_bold</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle [checked]="element.component.contentStyle['font-style']=='italic'" (change)="element.component.contentStyle['font-style']=$event.source.checked?'italic':'normal'"
+          matTooltipPosition="below" matTooltip="Chữ nghiêng">
+          <mat-icon>format_italic</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle [checked]="element.component.contentStyle['text-decoration']=='underline'" (change)="element.component.contentStyle['text-decoration']=$event.source.checked?'underline':'none'"
+          matTooltipPosition="below" matTooltip="Chữ gạch chân">
+          <mat-icon>format_underlined</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle [checked]="element.component.contentStyle['text-decoration']=='line-through'" (change)="element.component.contentStyle['text-decoration']=$event.source.checked?'line-through':'none'"
+          matTooltipPosition="below" matTooltip="Chữ gạch chân">
+          <mat-icon>format_strikethrough</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle [checked]="element.component.contentStyle['text-transform']=='uppercase'" (change)="element.component.contentStyle['text-transform']=$event.source.checked?'uppercase':'none'"
+          matTooltipPosition="below" matTooltip="Viết hoa">
+          <mat-icon>text_fields</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-menu>&emsp;
+  </ng-template>
+  <button mat-icon-button [matMenuTriggerFor]="alignMenu" matTooltipPosition="above" matTooltip="Căn lề">
+    <mat-icon>format_align_left</mat-icon>
+  </button>
+  <mat-menu #alignMenu="matMenu" [overlapTrigger]="false">
+    <mat-button-toggle-group #group="matButtonToggleGroup" [(value)]="contentStyle['text-align']" (click)="$event.stopPropagation()">
+      <mat-button-toggle value="left" matTooltipPosition="below" matTooltip="Căn trái">
+        <mat-icon>format_align_left</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="center" matTooltipPosition="below" matTooltip="Căn giữa">
+        <mat-icon>format_align_center</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="right" matTooltipPosition="below" matTooltip="Căn phải">
+        <mat-icon>format_align_right</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="justify" matTooltipPosition="below" matTooltip="Căn đều">
+        <mat-icon>format_align_justify</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-menu>
+</div>
+<mat-form-field *ngIf="!isMobile">
+  <input type="number" matInput placeholder="Khoảng cách chữ" min="0" (ngModelChange)="element.component.contentStyle['letter-spacing']=$event+'px'"
+    [ngModel]="element.component.contentStyle['letter-spacing']?element.component.contentStyle['letter-spacing'].split('px')[0]:'0'">
+  <span matSuffix>px</span>
+</mat-form-field>
+
+<mat-form-field>
+  <input type="number" matInput placeholder="Khoảng cách dòng" min="1" (ngModelChange)="contentStyle['line-height']=$event+'px'"
+    [ngModel]="contentStyle['line-height']?contentStyle['line-height'].split('px')[0]:
+  getComputedStyle('line-height').split('px')[0]">
+  <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field *ngIf="!isMobile">
+  <input type="number" matInput placeholder="Căn lề trái" min="0" (ngModelChange)="element.component.contentStyle['padding-left']=$event+'px'"
+    [ngModel]="element.component.contentStyle['padding-left']?element.component.contentStyle['padding-left'].split('px')[0]:'0'">
+  <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field *ngIf="!isMobile">
+  <input type="number" matInput placeholder="Căn lề phải" min="1" (ngModelChange)="element.component.contentStyle['padding-right']=$event+'px'"
+    [ngModel]="element.component.contentStyle['padding-right']?element.component.contentStyle['padding-right'].split('px')[0]:'0'">
+  <span matSuffix>px</span>
+</mat-form-field>

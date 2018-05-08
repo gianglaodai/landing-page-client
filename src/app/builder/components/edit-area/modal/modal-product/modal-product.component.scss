@@ -1,0 +1,34 @@
+.img-cover {
+    position: relative;
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.product {
+    margin-bottom: 20px;
+    h3 {
+        color: #555;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.12px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        text-align: center;
+        line-height: 1.2;
+    }
+    p {
+        font-size: 15px;
+        text-align: center;
+        font-weight: 400;
+        color: #983837;
+        margin-bottom: 0;
+    }
+}

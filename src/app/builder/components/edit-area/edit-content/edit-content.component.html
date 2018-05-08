@@ -1,0 +1,13 @@
+<div id="edit-content">
+    <div id="container" *ngIf="sections?.length">
+      <ng-container *ngFor="let section of sections">
+        <app-section [attr.app-type]="section.type" *ngIf="!isMobile||!section.mobileHide" [ngClass]="{'d-none':section.type==='popup'&&section.popup&&!section.popup.isShow}"
+          [section]="section" [attr.data-id]="section.id"></app-section>
+      </ng-container>
+    </div>
+    <app-widget-hruler [ngClass]="{'d-none':!isShowRuler}" [parent]="this"></app-widget-hruler>
+    <div id="diver-line-x"></div>
+    <div id="diver-line-y"></div>
+  <div *ngIf="!sections?.length" class="add-new-section text-uppercase" appOpenModalTemplate>+ Thêm đoạn mẫu</div>
+</div>
+<app-component-context-menu></app-component-context-menu>

@@ -1,0 +1,33 @@
+<div class="edit-section" *ngIf="!isMobile">
+  <ul>
+    <li matTooltip="Nhân bản" matTooltipPosition="before" (click)="cloneSection($event)">
+      <i class="material-icons">filter_none</i>
+    </li>
+    <li matTooltip="Lên trên" matTooltipPosition="before" (click)="moveSection($event,-1)">
+      <i class="material-icons">expand_less</i>
+    </li>
+    <li matTooltip="Xuống dưới" matTooltipPosition="before" (click)="moveSection($event,1)">
+      <i class="material-icons">expand_more</i>
+    </li>
+    <li matTooltip="Xóa" matTooltipPosition="before" (click)="deleteSection($event)">
+      <i class="ion-ios-trash-outline"></i>
+    </li>
+  </ul>
+</div>
+<!-- <div class="edit-section-mobile" *ngIf="isMobile">
+  <ul class="d-flex list-unstyled mb-0">
+    <li>
+      <a matTooltip="Sắp xếp lại {{parent.section.id}}" (click)="order()" matTooltipPosition="above">
+        <i class="ion-loop"></i>
+      </a>
+    </li>
+    <li>
+      <a matTooltip="Ẩn {{parent.section.id}}" (click)="hideSectrionOnMobile()" matTooltipPosition="above">
+        <i class="ion-eye-disabled"></i>
+      </a>
+    </li>
+  </ul>
+</div> -->
+<button *ngIf="!isMobile" class="add-section" mat-raised-button color="primary" appOpenModalTemplate [sectionId]="parent.section.id">
+  <i class="ion-plus-round"></i> Thêm Đoạn Mẫu
+</button>

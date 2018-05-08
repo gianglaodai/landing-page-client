@@ -1,0 +1,49 @@
+<div class="mat-form-field-wrapper" *ngIf="isMobile">
+  <button mat-raised-button color="primary" (click)="orderSection()" class="text-uppercase btn-block">Sắp xếp lại {{component.id}}</button>
+  <button mat-raised-button color="warn" (click)="hideSectionOnMobile()" class="text-uppercase btn-block">Ẩn {{component.id}}</button>
+</div>
+<mat-form-field>
+  <input type="text" matInput [(ngModel)]="backgroundImage" placeholder="Link ảnh" required>
+</mat-form-field>
+<div class="mat-form-field-wrapper">
+  <button mat-raised-button color="primary" class="text-uppercase btn-block" appOpenModalImage [isMultiple]="false" [component]="component">Thay đổi ảnh</button>
+</div>
+<app-colorpicker [color]="backgroundColor" label="Màu nền" (changeColor)="component.contentStyle['background-color']=$event"></app-colorpicker>
+<mat-form-field>
+  <mat-select placeholder="Kiểu" [(value)]="backgroundType">
+    <mat-option value="auto">Mặc định</mat-option>
+    <mat-option value="cover">Tràn khung nhìn</mat-option>
+    <mat-option value="100%h">Vừa chiều cao</mat-option>
+    <mat-option value="100%w">Vừa chiều rộng</mat-option>
+    <!-- <mat-option value="100%">Vừa khung nhìn</mat-option> -->
+    <mat-option value="fixed">Cuộn theo chuột</mat-option>
+  </mat-select>
+</mat-form-field>
+<!-- <mat-form-field>
+  <mat-select placeholder="Căn trái phải" [(value)]="component.contentStyle['background-position-x']">
+    <mat-option value="center">Căn giữa</mat-option>
+    <mat-option value="left">Căn trái</mat-option>
+    <mat-option value="right">Căn phải</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-select placeholder="Căn trên dưới" [(value)]="component.contentStyle['background-position-y']">
+    <mat-option value="center">Căn giữa</mat-option>
+    <mat-option value="top">Căn trên</mat-option>
+    <mat-option value="bottom">Căn dưới</mat-option>
+  </mat-select>
+</mat-form-field> -->
+<mat-form-field>
+    <mat-select placeholder="Căn lề" [(value)]="component.contentStyle['background-position']">
+      <mat-option value="center center">Căn giữa</mat-option>
+      <mat-option value="left center">Căn trái</mat-option>
+      <mat-option value="right center">Căn phải</mat-option>
+    </mat-select>
+  </mat-form-field>
+<mat-form-field>
+  <mat-select placeholder="Lặp ảnh" [(value)]="component.contentStyle['background-repeat']">
+    <mat-option value="no-repeat">Không lặp lại</mat-option>
+    <mat-option value="repeat">Lặp lại</mat-option>
+  </mat-select>
+</mat-form-field>
+<app-colorpicker [color]="component['overlay']" label="Lớp phủ" (changeColor)="component['overlay']=$event"></app-colorpicker>

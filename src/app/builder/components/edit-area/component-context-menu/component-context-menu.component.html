@@ -1,0 +1,7 @@
+<div class="context d-none" #menuContext>
+  <div class="mat-menu-content" [style.left.px]="menuLeft" [style.top.px]="menuTop">
+    <button class="mat-menu-item" mat-menu-item="" role="menuitem" tabindex="0" aria-disabled="false" (click)="moveComponent(1)">Di chuyển lên trên</button>
+    <button class="mat-menu-item" mat-menu-item="" role="menuitem" tabindex="0" aria-disabled="false" (click)="moveComponent(-1)">Di chuyển xuống dưới</button>
+  </div>
+  <div class="overlay" (click)="closeContext()"></div>
+</div>

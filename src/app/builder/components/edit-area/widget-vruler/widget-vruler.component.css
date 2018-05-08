@@ -1,0 +1,62 @@
+:host {
+    display: block;
+}
+
+.isMobile :host {
+    width: 320px;
+}
+
+#v-ruler {
+    pointer-events: auto;
+    position: fixed;
+    top: 121px;
+    z-index: 100;
+    padding-left: 23px;
+    width: 100%;
+    left: 0;
+    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, 0.7);
+    /* -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.isMobile :host #v-ruler {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -160px;
+    width: 320px;
+    overflow: hidden;
+    opacity: .7;
+}
+
+.isMobile :host #v-ruler .numbers {
+    height: 21px;
+}
+
+#v-ruler *,
+#h-ruler * {
+    cursor: copy;
+}
+
+#v-ruler .numbers {
+    display: block;
+    background: url(assets/img/ruler_horizontal.png) repeat-x -23px top;
+    height: 22px;
+    white-space: nowrap
+}
+
+#v-ruler .numbers .number {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+    padding: 5px 0 0 5px;
+    font-size: 10px;
+    color: #666;
+    text-indent: -19px
+}
+
+#v-ruler .numbers .number:first-child {
+    text-indent: -15px;
+}

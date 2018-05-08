@@ -1,0 +1,35 @@
+::ng-deep {
+    .select-border {
+        outline: none !important;
+    }
+    .select-border .mat-select-value {
+        position: relative;
+    }
+    .select-border .mat-select-value::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 50%;
+        margin-top: -0.5px;
+        border-width: 3px 0 0;
+    }
+    .select-border.solid .mat-select-value::after {
+        border-style: solid
+    }
+    .select-border.dotted .mat-select-value::after {
+        border-style: dotted
+    }
+    .select-border.dashed .mat-select-value::after {
+        border-style: dashed
+    }
+}
+
+.colorpicker {
+    position: absolute;
+    top: 21px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 11;
+}

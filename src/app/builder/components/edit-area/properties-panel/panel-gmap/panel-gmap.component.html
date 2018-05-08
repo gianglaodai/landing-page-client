@@ -1,0 +1,23 @@
+<form #formGmap="ngForm" (submit)="onSubmit(formGmap.form)">
+  <mat-form-field>
+    <input type="text" matInput placeholder="Vị trí" name="locationLabel" [ngModel]="element.component.gmap.locationLabel"
+    (ngModelChange)="gmap.locationLabel=$event" #search required />
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Tiêu đề" name="markerLabel" [ngModel]="element.component.gmap.markerLabel"
+    (ngModelChange)="gmap.markerLabel=$event" required />
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" matInput placeholder="Zoom" name="zoom" min="1" [ngModel]="element.component.gmap.zoom"
+    (ngModelChange)="gmap.zoom=$event" required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Kiểu bản đồ" name="mapTypeId" [ngModel]="element.component.gmap.mapTypeId" (ngModelChange)="gmap.mapTypeId=$event">
+      <mat-option value="roadmap">Lộ trình</mat-option>
+      <mat-option value="hybrid">Hỗn hợp</mat-option>
+      <mat-option value="satellite">Vệ tinh</mat-option>
+      <mat-option value="terrain">Địa hình</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Thay đổi</button>
+</form>

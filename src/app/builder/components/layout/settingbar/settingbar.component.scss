@@ -1,0 +1,23 @@
+:host {
+    display: block;
+    max-height: 100%;
+}
+:host ::ng-deep{
+  .mCSB_scrollTools{
+    width: 4px;
+  }
+}
+
+.component-name {
+    color: #979797;
+    text-transform: uppercase;
+    line-height: 18px;
+    padding: 10px 15px;
+    position: relative;
+    letter-spacing: .5px;
+    font-size: 13px;
+    margin-bottom: 0;
+    font-weight: bold;
+    /* margin-right: auto; */
+    border-left: 1px solid #ddd;
+}

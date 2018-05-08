@@ -1,0 +1,29 @@
+:host {
+    position: relative;
+    display: block;
+}
+
+:host ::ng-deep {
+    .color-picker {
+        // width: 100% !important;
+        border: none;
+        margin: 0;
+    }
+    .color-picker .button-area:after{
+      clear: both;
+      display: table;
+      content: ""
+    }
+}
+
+.color-picker-container {
+    position: fixed;
+    z-index: 99999;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background-color: #fff;
+    width: 250px;
+    overflow: auto;
+    padding: 10px;
+}

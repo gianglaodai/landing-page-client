@@ -1,0 +1,11 @@
+:host ::ng-deep {
+    .mat-horizontal-stepper-header {
+        height: 50px;
+    }
+    .mat-horizontal-stepper-header-container {
+        margin-block-end: 20px;
+    }
+}
+.mat-dialog-content{
+  overflow: visible
+}

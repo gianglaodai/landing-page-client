@@ -1,0 +1,23 @@
+:host {
+    height: 100%;
+}
+
+mat-sidenav {
+    width: 250px;
+}
+
+#header {
+    z-index: 9999;
+    height: 121px;
+    position: relative;
+}
+
+::ng-deep {
+    html,
+    body {
+        height: 100%;
+    }
+    body {
+        overflow: hidden;
+    }
+}

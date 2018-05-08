@@ -1,0 +1,17 @@
+<div class="d-flexflex-column" [ngClass]="{'isMobile':isMobile}">
+  <div id="header">
+    <app-menu id="menu"></app-menu>
+    <app-toolbar id="toolbar"></app-toolbar>
+  </div>
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <div #content>
+        <app-widget-vruler [ngClass]="{'d-none':!isShowRuler}"></app-widget-vruler>
+        <app-edit-content id="appEditConent" malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'minimal-dark','scrollInertia':0,'mouseWheel':{ 'scrollAmount': 300 } }"></app-edit-content>
+      </div>
+    </mat-sidenav-content>
+    <mat-sidenav mode="side" position="end" [opened]="isShowSettingBar" fixedInViewport="true" fixedTopGap="123">
+      <app-settingbar malihu-scrollbar [scrollbarOptions]="{ axis: 'y', theme: 'minimal-dark','mouseWheel':{ 'scrollAmount': 300 } }"></app-settingbar>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>

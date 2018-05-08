@@ -1,0 +1,17 @@
+<mat-form-field>
+  <input type="number" matInput [ngModel]="hOffset" (ngModelChange)="changeShadow(0,$event)" placeholder="Chiều ngang" min="0">
+  <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [ngModel]="vOffset" (ngModelChange)="changeShadow(1,$event)" placeholder="Chiều dọc" min="0">
+  <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [ngModel]="blur" (ngModelChange)="changeShadow(2,$event)" placeholder="Độ mờ" min="0">
+  <span matSuffix>px</span>
+</mat-form-field>
+<mat-form-field>
+  <input type="number" matInput [ngModel]="spread" (ngModelChange)="changeShadow(3,$event)" placeholder="Độ mở rộng" min="0">
+  <span matSuffix>px</span>
+</mat-form-field>
+<app-colorpicker [color]="color" label="Màu" (changeColor)="changeShadow(4,$event)"></app-colorpicker>

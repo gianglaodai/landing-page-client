@@ -1,0 +1,42 @@
+#h-ruler {
+    height: 100%;
+    pointer-events: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    padding-top: 23px;
+    background-color: rgba(255, 255, 255, .7);
+    /* -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); */
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.isMobile :host #h-ruler {
+    left: 16px;
+    opacity: .7;
+}
+
+#h-ruler .numbers {
+    background: url(assets/img/ruler_vertical.png) repeat-y left -23px;
+    width: 22px;
+    height: 100%;
+    overflow: hidden;
+}
+
+#h-ruler .numbers .number {
+    display: block;
+    height: 100px;
+    width: 10px;
+    text-align: right;
+    padding: 1px 0 0 13px;
+    font-size: 10px;
+    color: #666;
+    word-break: break-all;
+    line-height: 1.4;
+    transform: translateY(-23px);
+}
+
+#h-ruler .numbers .number:first-child {
+    visibility: hidden
+}

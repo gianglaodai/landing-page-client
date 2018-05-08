@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-between align-items-top">
+  <mat-form-field style="margin-right: auto" focus="false">
+    <input type="text" matInput placeholder="Nhập từ khóa" [(ngModel)]='search' (ngModelChange)='doSearch()'>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <div>
+    <button mat-button mat-dialog-close>Đóng</button>
+  </div>
+  <div style="margin-left: 5px;">
+    <button mat-raised-button color="warn" class="btn-upload">
+      Tải lên
+      <mat-icon>attach_file</mat-icon>
+      <input name="file" type="file" accept="image/*" multiple (change)='uploadImagesFromInput($event)'/>
+    </button>
+  </div>
+</div>
+<div class="d-flex justify-content-between align-items-center" *ngIf="isMultiple">
+  <div style="margin-left: 5px;margin-right: auto;">
+    <label>Có {{selectedImages.length}} ảnh được chọn</label>
+    <mat-checkbox matTooltip="Bỏ chọn" (change)="unSelectedImage($event.checked)" [checked]="selectedImages.length" *ngIf="selectedImages.length" color="primary"></mat-checkbox>
+  </div>
+  <div [ngClass]="{'invisible':!selectedImages.length}">
+    <button mat-raised-button color="warn" (click)="deleteImages()">Xóa</button>&nbsp;
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addSelectedImage()">Thêm</button>
+  </div>
+</div>
+<br/>
+<form id="upload-img" (drag)='onDrag($event)' (dragover)='dragOver($event)' (dragstart)='dragStart($event)' (dragenter)='dragEnter($event)'
+  (dragend)='dragEnd($event)' (dragleave)='dragLeave($event)' (drop)='onDrop($event)'>
+  <div class="fallback" [ngClass]="{'isDragOver': isDragOver }">
+    <h2 *ngIf="!dataImages.length">
+      <mat-icon>cloud_upload</mat-icon>
+      Kéo thả file để upload</h2>
+    <div class="row uploaded-list">
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6" *ngFor="let image of images">
+        <div class="img">
+          <div class="img-cover">
+            <img [src]="image.thumbnail" [alt]="image.name" />
+          </div>
+          <h3 class="d-flex justify-content-between align-items-center">
+            <span>{{image.fileName}}</span>
+            <mat-checkbox *ngIf="isMultiple" matTooltip="Chọn nhiều" [checked]="selectedImages.indexOf(image)>=0" (change)="selectImage(image,$event.checked)"
+              color="primary"></mat-checkbox>
+          </h3>
+          <div class="img-action">
+            <button mat-mini-fab color="warn" (click)='deleteImage(image)' matTooltip="Xóa ảnh" matTooltipPosition="above">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)='useImage(image)' mat-dialog-close matTooltip="Chỉ chọn ảnh này">
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uploading {{isUploading?'d-flex':'d-none'}} flex-column text-center justify-content-center">
+      <div>
+        <mat-spinner></mat-spinner>
+      </div>
+      <b>
+        <i>Uploading...</i>
+      </b>
+    </div>
+  </div>
+</form>

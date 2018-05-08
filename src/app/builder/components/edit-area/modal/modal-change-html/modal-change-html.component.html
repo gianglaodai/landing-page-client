@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Chỉnh sửa HTML</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <textarea matInput rows="7" placeholder="Nội dung HTML" [(ngModel)]="content"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-raised-button [mat-dialog-close]="true" color="warn">Đóng</button>
+  <button mat-raised-button color="primary" (click)="save()">Cập nhật</button>
+</mat-dialog-actions>

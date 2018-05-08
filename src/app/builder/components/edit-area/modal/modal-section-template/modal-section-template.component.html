@@ -1,0 +1,59 @@
+<!-- <div class="d-flex justify-content-between align-items-top">
+  <mat-form-field style="margin-right: auto" focus="false">
+    <input type="text" matInput placeholder="Nhập từ khóa">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <div>
+    <button mat-button mat-dialog-close>Đóng</button>
+  </div>
+</div> -->
+<mat-expansion-panel *ngIf="isAdmin">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Thêm section mẫu</mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-form-field>
+    <input matInput placeholder="Tên section" [(ngModel)]="newSection.pageName">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Catalog" [(ngModel)]="newSection.catalog">
+      <mat-option value="">None</mat-option>
+      <mat-option *ngFor="let category of categories" [value]="category.value">{{category.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <mat-form-field>
+    <input type="file" matInput placeholder="Ảnh đại diện" [(ngModel)]="newSection.pageName">
+  </mat-form-field> -->
+  <mat-form-field>
+    <textarea matInput rows="10" placeholder="Template Json" [(ngModel)]="newSection.jsonContent"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addNewSection()">Thêm</button>
+</mat-expansion-panel>
+<ul class="categories list-unstyled">
+  <li *ngFor="let category of categories" [ngClass]="{'active':category===active}">
+    <a (click)="loadCategory(category)">{{category.label}}</a>
+  </li>
+</ul>
+<div class="templates">
+  <div class="row">
+    <div class="col-12 col-xs-6 col-sm-4">
+      <div class="template">
+        <div class="img-cover">
+          <img src="assets/img/noimage.png" alt="Empty Section">
+          <div class="d-flex justify-content-center align-items-center flex-column template-action">
+            <button class="btn btn-success" (click)="addSection(null)">Sử dụng trang trắng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xs-6 col-sm-4" *ngFor="let section of sectionTemplates">
+      <div class="template">
+        <div class="img-cover">
+          <img [src]="hostUrl+section.thumbnailUrl" [alt]="section.fileName">
+          <div class="d-flex justify-content-center align-items-center flex-column template-action">
+            <button class="btn btn-success" (click)="addSection(section)">Sử dụng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

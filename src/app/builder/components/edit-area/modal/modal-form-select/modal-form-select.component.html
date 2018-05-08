@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Tùy chỉnh tập giá trị trong #{{component.id}}</h2>
+<mat-dialog-content class="mb-auto">
+  <ng-container *ngFor="let option of options">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field>
+            <input matInput placeholder="Tiêu đề" [(ngModel)]="option.text">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field>
+            <input matInput placeholder="Giá trị" [(ngModel)]="option.value">
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-icon-button color="warn" (click)="delete(option)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <br/>
+  </ng-container>
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field>
+          <input matInput placeholder="Tiêu đề" [(ngModel)]="newOption.text" required>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <input matInput placeholder="Giá trị" [(ngModel)]="newOption.value">
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-icon-button color="primary" [disabled]="!newOption?.text?.trim().length" (click)="add()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-between">
+  <button mat-raised-button [mat-dialog-close]="true" color="warn">Đóng</button>
+</mat-dialog-actions>

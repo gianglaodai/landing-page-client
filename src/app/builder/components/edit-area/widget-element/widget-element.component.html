@@ -1,0 +1,70 @@
+<div app-type="element" (dblclick)="enableEdit($event)" *ngIf="component" [ngClass]="{'widget-element':true,'attach-edit':isAttachEdit,'inside-group':inSectionRange}"
+  [id]="component.id" [ngSwitch]="component.type" appComponentContextMenu [element]="this">
+  <div class="widget-overlay" (click)="attachResizeElement($event)"></div>
+  <h1 app-type="h1" class="widget-content" *ngSwitchCase="componentType.H1" [ngStyle]="contentStyle" [innerHTML]="component.content"></h1>
+  <h2 app-type="h2" class="widget-content" *ngSwitchCase="componentType.H2" [ngStyle]="contentStyle" [innerHTML]="component.content"></h2>
+  <h3 app-type="h3" class="widget-content" *ngSwitchCase="componentType.H3" [ngStyle]="contentStyle" [innerHTML]="component.content"></h3>
+  <h4 app-type="h4" class="widget-content" *ngSwitchCase="componentType.H4" [ngStyle]="contentStyle" [innerHTML]="component.content"></h4>
+  <h5 app-type="h5" class="widget-content" *ngSwitchCase="componentType.H5" [ngStyle]="contentStyle" [innerHTML]="component.content"></h5>
+  <h6 app-type="h6" class="widget-content" *ngSwitchCase="componentType.H6" [ngStyle]="contentStyle" [innerHTML]="component.content"></h6>
+  <p app-type="p" class="widget-content" *ngSwitchCase="componentType.P" [ngStyle]="contentStyle" [innerHTML]="component.content"></p>
+  <a app-type="button" class="widget-content" *ngSwitchCase="componentType.BUTTON" [ngStyle]="contentStyle" [innerHTML]="component.content"></a>
+  <div app-type="hline" class="widget-content" *ngSwitchCase="componentType.HLINE">
+    <div class="hline" [ngStyle]="contentStyle"></div>
+  </div>
+  <div app-type="vline" class="widget-content" *ngSwitchCase="componentType.VLINE">
+    <div class="vline" [ngStyle]="contentStyle"></div>
+  </div>
+  <app-ul class="widget-content" [component]="component" *ngSwitchCase="componentType.UL" [ngStyle]="contentStyle"></app-ul>
+  <svg app-type="icon" *ngSwitchCase="componentType.SHAPE" xmlns="http://www.w3.org/2000/svg" [ngStyle]="contentStyle" xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="100%" height="100%" [attr.viewBox]="component.svg['view-box']">
+    <path [attr.d]="component.svg['path']"></path>
+  </svg>
+  <iframe class="widget-content" *ngSwitchCase="componentType.YOUTUBE" width="100%" height="100%" [ngStyle]="contentStyle"
+    [appEmbedChromeFix]="component.youtube.src+'?autoplay='+component.youtube.autoplay" frameborder="0" allow="autoplay; encrypted-media"
+    allowfullscreen></iframe>
+  <app-gmap class="widget-content" [component]="component" *ngSwitchCase="componentType.GMAP" [ngStyle]="contentStyle">
+    <div class="gmap-overlay"></div>
+  </app-gmap>
+  <app-countdown app-type="countdown" class="widget-content" [element]="this" *ngSwitchCase="componentType.COUNTDOWN" [ngStyle]="contentStyle"></app-countdown>
+  <app-comments app-type="comments" class="widget-content" *ngSwitchCase="componentType.COMMENTS" [ngStyle]="contentStyle" [component]="component"></app-comments>
+  <div app-type="image" class="widget-content" *ngSwitchCase="componentType.IMAGE" [ngStyle]="contentStyle">
+    <div class="overlay" [ngStyle]="{'background-color':component.overlay}"></div>
+    <ng-container *ngFor="let componentChild of component.childrens" #renderChild>
+      <app-element *ngIf="!isMobile||!componentChild.mobileHide" #childrensElm appComponentDragable appComponentResizeable class="ui-snap"
+        [component]="componentChild" [attr.data-id]="componentChild.id" [parent]="this" [ngStyle]="getPosition(componentChild)"></app-element>
+    </ng-container>
+  </div>
+  <div app-type="html" class="widget-content" *ngSwitchCase="componentType.HTML" [ngStyle]="contentStyle" [innerHTML]="trustHTML(component.content)"></div>
+  <app-carousel #carousel class="widget-content carousel slide" *ngSwitchCase="componentType.CAROUSEL" [component]="component"></app-carousel>
+  <div app-type="box" class="widget-content" *ngSwitchCase="componentType.BOX" [ngStyle]="contentStyle">
+    <div class="overlay" [ngStyle]="{'background-color':component.overlay}"></div>
+    <ng-container *ngFor="let componentChild of component.childrens" #renderChild>
+      <app-element *ngIf="!isMobile||!componentChild.mobileHide" #childrensElm appComponentDragable appComponentResizeable class="ui-snap"
+        [component]="componentChild" [attr.data-id]="componentChild.id" [parent]="this" [ngStyle]="getPosition(componentChild)"></app-element>
+    </ng-container>
+  </div>
+  <div app-type="group" class="widget-content" *ngSwitchCase="componentType.GROUP">
+      <ng-container *ngFor="let componentChild of component.childrens" #renderChild>
+        <app-element *ngIf="!isMobile||!componentChild.mobileHide" #childrensElm appComponentDragable appComponentResizeable class="ui-snap"
+          [component]="componentChild" [attr.data-id]="componentChild.id" [parent]="this" [ngStyle]="getPosition(componentChild)"></app-element>
+      </ng-container>
+  </div>
+  <form app-type="form" class="widget-content" *ngSwitchCase="componentType.FORM" [style]="formVariableStyles">
+    <ng-container *ngFor="let componentChild of component.childrens" #renderChild>
+      <app-element *ngIf="!isMobile||!componentChild.mobileHide" #childrensElm appComponentDragable appComponentResizeable class="ui-snap"
+        [component]="componentChild" [attr.data-id]="componentChild.id" [parent]="this" [ngStyle]="getPosition(componentChild)"></app-element>
+    </ng-container>
+  </form>
+  <input [type]="component.formControl?.type" [name]="component.formControl?.name" [placeholder]="component.formControl?.placeholder"
+    *ngSwitchCase="componentType.FORM_INPUT" [ngStyle]="contentStyle" style="width:100%" />
+  <textarea [name]="component.formControl?.name" [placeholder]="component.formControl?.placeholder"
+    *ngSwitchCase="componentType.FORM_TEXTAREA" [ngStyle]="contentStyle" style="width:100%"></textarea>
+  <select [name]="component.formControl?.name" *ngSwitchCase="componentType.FORM_SELECT" [ngStyle]="contentStyle" style="width:100%">
+    <option *ngFor="let option of component.formControl?.options" [selected]="component.formControl?.value===option.value"
+    [value]="option.value">{{option.text}}</option>
+  </select>
+  <div class="iframe-overlay" *ngIf="component.type===componentType.YOUTUBE||component.type===componentType.COMMENTS
+  ||componentType.FORM_CONTROL.indexOf(component.type)>=0"></div>
+</div>
+<app-widget-edit-element [component]="this" [parent]="parent" class="widget-edit" (enableEdit)="enableEdit($event)"></app-widget-edit-element>

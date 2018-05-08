@@ -1,0 +1,5 @@
+{
+  "serverUrl": "http://61.14.235.28:8888",
+  "publishUrl": "http://61.14.235.28:8800/publish",
+  "productsUrl": "http://61.14.235.28:8800/getProducts"
+}
